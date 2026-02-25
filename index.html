@@ -14,7 +14,7 @@
             --light-gold: #f3e5ab;
             --glass-bg: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(212, 175, 55, 0.3);
-            --inner-bg: rgba(0, 0, 0, 0.35); /* अंदर के बॉक्स का डार्क बैकग्राउंड */
+            --inner-bg: rgba(0, 0, 0, 0.35);
         }
 
         * {
@@ -26,7 +26,6 @@
         }
 
         body {
-            /* Premium Dark Gradient Background */
             background: radial-gradient(circle at 50% 0%, var(--royal-blue) 0%, var(--dark-blue) 70%, #000000 100%);
             color: #ffffff;
             display: flex;
@@ -42,13 +41,13 @@
             z-index: 1;
         }
 
-        /* 1. Logo and Heading in One Row */
+        /* Logo and Heading */
         header {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             animation: fadeIn 1.2s ease;
         }
 
@@ -74,7 +73,37 @@
             text-align: left;
         }
 
-        /* Glassmorphism Welcome Message */
+        /* NEW: Private Students Blinking Button */
+        .btn-private-special {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #128C7E, #25D366);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 22px;
+            border-radius: 30px; /* Pill shape */
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            border: 1px solid var(--gold);
+            animation: specialBlink 1.2s infinite alternate;
+            position: relative;
+        }
+
+        @keyframes specialBlink {
+            0% { 
+                transform: scale(1); 
+                box-shadow: 0 0 5px rgba(37, 211, 102, 0.4), 0 0 5px rgba(212, 175, 55, 0.2); 
+            }
+            100% { 
+                transform: scale(1.05); 
+                box-shadow: 0 0 20px rgba(37, 211, 102, 0.8), 0 0 15px rgba(212, 175, 55, 0.6); 
+            }
+        }
+
+        /* Welcome Message */
         .welcome-msg {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -99,7 +128,7 @@
             animation: shine 3s infinite;
         }
 
-        /* 2. Youtube Links - Icon Left, Text Right */
+        /* Youtube Links */
         .yt-container {
             margin-bottom: 30px;
             display: grid;
@@ -111,12 +140,12 @@
             background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
             color: white;
             text-decoration: none;
-            padding: 10px 12px; /* ऊपर-नीचे की पैडिंग कम की गई है */
+            padding: 10px 12px;
             border-radius: 12px;
             font-weight: 500;
-            font-size: 0.75rem; /* मोबाइल स्क्रीन पर फिट होने के लिए फॉन्ट साइज़ एडजस्ट किया है */
+            font-size: 0.75rem;
             display: flex;
-            flex-direction: row; /* अब आइकॉन और टेक्स्ट एक ही लाइन में आएंगे */
+            flex-direction: row;
             align-items: center;
             justify-content: center;
             gap: 8px;
@@ -129,7 +158,7 @@
 
         .btn-yt i { 
             font-size: 1.8rem; 
-            flex-shrink: 0; /* इससे आइकॉन दबेगा नहीं */
+            flex-shrink: 0;
         }
 
         .btn-yt:hover {
@@ -137,7 +166,7 @@
             box-shadow: 0 8px 25px rgba(204, 0, 0, 0.6);
         }
 
-        /* Glass Accordion Tabs */
+        /* Tabs */
         .tab-container {
             display: flex;
             flex-direction: column;
@@ -179,7 +208,6 @@
             transform: rotate(180deg);
         }
 
-        /* Inner Content Background Color Change */
         .tab-content {
             max-height: 0;
             overflow: hidden;
@@ -206,7 +234,6 @@
             text-align: center;
         }
 
-        /* Sleek Social Buttons inside Tabs */
         .btn-social {
             text-decoration: none;
             color: white;
@@ -230,7 +257,6 @@
         .btn-social.ig:hover { border-color: #E1306C; color: #E1306C; background: rgba(225, 48, 108, 0.1); }
         .btn-social.fb:hover { border-color: #1877F2; color: #1877F2; background: rgba(24, 119, 242, 0.1); }
 
-        /* Common Links Section */
         .common-links {
             margin-top: 40px;
             text-align: center;
@@ -244,7 +270,6 @@
             letter-spacing: 1px;
         }
 
-        /* Instagram and Facebook Side by Side */
         .two-col {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -256,7 +281,6 @@
             padding: 12px 5px;
         }
 
-        /* Animations */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-5px); }
@@ -282,6 +306,12 @@
             <img src="logo.jpg" alt="University Gyaan Logo" class="logo">
             <h1>University<br>Gyaan</h1>
         </header>
+
+        <div style="text-align: center;">
+            <a href="https://whatsapp.com/channel/0029VbCVHI19MF93Iw2ZTX2Q" target="_blank" class="btn-private-special">
+                <i class="fab fa-whatsapp" style="font-size: 1.1rem;"></i> Private Students Special Group
+            </a>
+        </div>
 
         <div class="welcome-msg">
             ✨ CCSU | MSU | AKTU | MJPRU | IGNOU | SSV College से जुड़ी Daily Updates के लिए हमसे आज ही जुड़ें अपने पसंदीदा Social Media के माध्यम से ✨
@@ -407,3 +437,4 @@
     </script>
 </body>
 </html>
+
