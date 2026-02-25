@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Gyaan - Premium Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-blue: #020b1f;
+            --royal-blue: #001F3F;
+            --gold: #D4AF37;
+            --light-gold: #f3e5ab;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(212, 175, 55, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            /* Premium Dark Gradient Background */
+            background: radial-gradient(circle at 50% 0%, var(--royal-blue) 0%, var(--dark-blue) 70%, #000000 100%);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            padding: 30px 20px 60px;
+            z-index: 1;
+        }
+
+        /* Floating Logo */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1.2s ease;
+        }
+
+        .logo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: block;
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(212, 175, 55, 0.2);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Logo Matching Font */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        /* Glassmorphism Welcome Message */
+        .welcome-msg {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 15px 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--light-gold);
+            line-height: 1.5;
+            margin-bottom: 35px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-msg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        /* Premium YouTube Buttons */
+        .yt-container {
+            margin-bottom: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn-yt {
+            background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
+            color: white;
+            text-decoration: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            border: 1px solid #ff4d4d;
+            box-shadow: 0 5px 15px rgba(204, 0, 0, 0.4);
+            transition: all 0.3s;
+        }
+
+        .btn-yt:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(204, 0, 0, 0.6);
+        }
+
+        /* Glass Accordion Tabs */
+        .tab-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .tab {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            background: rgba(212, 175, 55, 0.08);
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+        }
+
+        .tab-header {
+            padding: 18px 20px;
+            font-weight: 500;
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .tab-header i {
+            color: var(--gold);
+            transition: transform 0.4s ease;
+        }
+
+        .tab.active .tab-header i {
+            transform: rotate(180deg);
+        }
+
+        .tab-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .tab.active .tab-content {
+            max-height: 500px;
+        }
+
+        .tab-inner {
+            padding: 0 20px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .desc-text {
+            font-size: 0.85rem;
+            color: #b3b3b3;
+            margin-bottom: 5px;
+        }
+
+        /* Sleek Social Buttons inside Tabs */
+        .btn-social {
+            text-decoration: none;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.3);
+        }
+
+        .btn-social i { font-size: 1.2rem; }
+        
+        .btn-social.tg:hover { border-color: #0088cc; color: #0088cc; background: rgba(0, 136, 204, 0.1); }
+        .btn-social.wa:hover { border-color: #25D366; color: #25D366; background: rgba(37, 211, 102, 0.1); }
+        .btn-social.ig:hover { border-color: #E1306C; color: #E1306C; background: rgba(225, 48, 108, 0.1); }
+        .btn-social.fb:hover { border-color: #1877F2; color: #1877F2; background: rgba(24, 119, 242, 0.1); }
+
+        /* Common Links Section */
+        .common-links {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .common-links h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes shine {
+            100% { left: 200%; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img src="logo.jpg" alt="University Gyaan Logo" class="logo">
+            <h1>University<br>Gyaan</h1>
+        </header>
+
+        <div class="welcome-msg">
+            ✨ CCSU | MSU | AKTU | MJPRU | IGNOU | SSV College से जुड़ी Daily Updates के लिए हमसे आज ही जुड़ें अपने पसंदीदा Social Media के माध्यम से ✨
+        </div>
+        
+        <div class="yt-container">
+            <a href="https://www.youtube.com/@University_Gyaan" target="_blank" class="btn-yt">
+                <i class="fab fa-youtube" style="font-size: 1.4rem;"></i> CCSU | MSU | AKTU | MJPRU
+            </a>
+            <a href="https://www.youtube.com/@UniversityGyaan_2.0" target="_blank" class="btn-yt">
+                <i class="fab fa-youtube" style="font-size: 1.4rem;"></i> IGNOU | CCSU ODL | DU SOL
+            </a>
+        </div>
+
+        <div class="tab-container">
+            
+            <div class="tab">
+                <div class="tab-header" onclick="toggleTab(this)">
+                    <span>🎓 CCS University, Meerut</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-inner">
+                        <a href="https://t.me/CCSNewsUpdates" target="_blank" class="btn-social tg"><i class="fab fa-telegram-plane"></i> Telegram Channel</a>
+                        <a href="https://www.whatsapp.com/channel/0029Va8mCyHDuMRolLgWPM2S" target="_blank" class="btn-social wa"><i class="fab fa-whatsapp"></i> WhatsApp Channel</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab">
+                <div class="tab-header" onclick="toggleTab(this)">
+                    <span>🎓 Maa Shakumbhari University</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-inner">
+                        <a href="https://t.me/MSU_NewsUpdates" target="_blank" class="btn-social tg"><i class="fab fa-telegram-plane"></i> Telegram Channel</a>
+                        <a href="https://www.whatsapp.com/channel/0029Vb7YOBX3gvWcNNANMJ1W" target="_blank" class="btn-social wa"><i class="fab fa-whatsapp"></i> WhatsApp Channel</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab">
+                <div class="tab-header" onclick="toggleTab(this)">
+                    <span>🏫 SSV College, Hapur</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-inner">
+                        <a href="https://t.me/SSVCollege_Hapur" target="_blank" class="btn-social tg"><i class="fab fa-telegram-plane"></i> Telegram Channel</a>
+                        <a href="https://www.whatsapp.com/channel/0029VbBSAbPJZg45uKTdPs2x" target="_blank" class="btn-social wa"><i class="fab fa-whatsapp"></i> WhatsApp Channel</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab">
+                <div class="tab-header" onclick="toggleTab(this)">
+                    <span>🌐 Distance Education (ODL)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-inner">
+                        <p class="desc-text">News from CCSU ODL, IGNOU, DU SOL and other universities.</p>
+                        <a href="https://t.me/UnivesityGyaan_2" target="_blank" class="btn-social tg"><i class="fab fa-telegram-plane"></i> Telegram Channel</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab">
+                <div class="tab-header" onclick="toggleTab(this)">
+                    <span>🎓 AKTU | MJPRU</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-inner">
+                        <p class="desc-text">Latest updates and news. Stay connected on YouTube & Instagram!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab">
+                <div class="tab-header" onclick="toggleTab(this)">
+                    <span>📘 Daily GK Update</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-inner">
+                        <p class="desc-text">GK questions, answers, and daily current affairs.</p>
+                        <a href="https://t.me/gkgurujiindia" target="_blank" class="btn-social tg"><i class="fab fa-telegram-plane"></i> GK Telegram Channel</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="common-links">
+            <h3>🌐 Our Common Platforms</h3>
+            <div class="tab-inner" style="padding:0;">
+                <a href="https://www.instagram.com/universitygyaan" target="_blank" class="btn-social ig" style="justify-content: center;"><i class="fab fa-instagram"></i> Follow on Instagram</a>
+                <a href="https://www.facebook.com/ccsussvcupdates" target="_blank" class="btn-social fb" style="justify-content: center;"><i class="fab fa-facebook-f"></i> Follow on Facebook</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleTab(header) {
+            const currentTab = header.parentElement;
+            const allTabs = document.querySelectorAll('.tab');
+
+            // Close all other tabs
+            allTabs.forEach(tab => {
+                if (tab !== currentTab) {
+                    tab.classList.remove('active');
+                }
+            });
+
+            // Toggle current tab
+            currentTab.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
