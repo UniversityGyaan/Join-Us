@@ -14,6 +14,7 @@
             --light-gold: #f3e5ab;
             --glass-bg: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(212, 175, 55, 0.3);
+            --inner-bg: rgba(0, 0, 0, 0.35); /* अंदर के बॉक्स का डार्क बैकग्राउंड */
         }
 
         * {
@@ -41,34 +42,36 @@
             z-index: 1;
         }
 
-        /* Floating Logo */
+        /* 1. Logo and Heading in One Row */
         header {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
             margin-bottom: 30px;
             animation: fadeIn 1.2s ease;
         }
 
         .logo {
-            width: 140px;
-            height: 140px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            margin: 0 auto 15px;
-            display: block;
-            border: 3px solid var(--gold);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(212, 175, 55, 0.2);
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4), inset 0 0 10px rgba(212, 175, 55, 0.2);
             animation: float 4s ease-in-out infinite;
+            flex-shrink: 0;
         }
 
-        /* Logo Matching Font */
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
             -webkit-background-clip: text;
             color: transparent;
             text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
             letter-spacing: 1px;
             line-height: 1.1;
+            text-align: left;
         }
 
         /* Glassmorphism Welcome Message */
@@ -82,7 +85,7 @@
             font-size: 0.9rem;
             color: var(--light-gold);
             line-height: 1.5;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
@@ -96,29 +99,37 @@
             animation: shine 3s infinite;
         }
 
-        /* Premium YouTube Buttons */
+        /* 2. Youtube Links - Icon Left, Text Right */
         .yt-container {
-            margin-bottom: 35px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
 
         .btn-yt {
             background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
             color: white;
             text-decoration: none;
-            padding: 16px;
+            padding: 10px 12px; /* ऊपर-नीचे की पैडिंग कम की गई है */
             border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.05rem;
+            font-weight: 500;
+            font-size: 0.75rem; /* मोबाइल स्क्रीन पर फिट होने के लिए फॉन्ट साइज़ एडजस्ट किया है */
             display: flex;
+            flex-direction: row; /* अब आइकॉन और टेक्स्ट एक ही लाइन में आएंगे */
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 8px;
             border: 1px solid #ff4d4d;
             box-shadow: 0 5px 15px rgba(204, 0, 0, 0.4);
             transition: all 0.3s;
+            text-align: left;
+            line-height: 1.3;
+        }
+
+        .btn-yt i { 
+            font-size: 1.8rem; 
+            flex-shrink: 0; /* इससे आइकॉन दबेगा नहीं */
         }
 
         .btn-yt:hover {
@@ -149,7 +160,7 @@
         }
 
         .tab-header {
-            padding: 18px 20px;
+            padding: 16px 20px;
             font-weight: 500;
             font-size: 1.05rem;
             cursor: pointer;
@@ -168,10 +179,13 @@
             transform: rotate(180deg);
         }
 
+        /* Inner Content Background Color Change */
         .tab-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease-out;
+            background: var(--inner-bg);
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         .tab.active .tab-content {
@@ -179,16 +193,17 @@
         }
 
         .tab-inner {
-            padding: 0 20px 20px 20px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .desc-text {
             font-size: 0.85rem;
-            color: #b3b3b3;
+            color: #cccccc;
             margin-bottom: 5px;
+            text-align: center;
         }
 
         /* Sleek Social Buttons inside Tabs */
@@ -200,11 +215,12 @@
             font-size: 0.95rem;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             font-weight: 500;
             transition: all 0.2s;
             border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.05);
         }
 
         .btn-social i { font-size: 1.2rem; }
@@ -228,10 +244,22 @@
             letter-spacing: 1px;
         }
 
+        /* Instagram and Facebook Side by Side */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .two-col .btn-social {
+            font-size: 0.9rem;
+            padding: 12px 5px;
+        }
+
         /* Animations */
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-5px); }
             100% { transform: translateY(0px); }
         }
 
@@ -249,6 +277,7 @@
 <body>
 
     <div class="container">
+        
         <header>
             <img src="logo.jpg" alt="University Gyaan Logo" class="logo">
             <h1>University<br>Gyaan</h1>
@@ -260,10 +289,12 @@
         
         <div class="yt-container">
             <a href="https://www.youtube.com/@University_Gyaan" target="_blank" class="btn-yt">
-                <i class="fab fa-youtube" style="font-size: 1.4rem;"></i> CCSU | MSU | AKTU | MJPRU
+                <i class="fab fa-youtube"></i> 
+                <span>CCSU | MSU<br>AKTU | MJPRU</span>
             </a>
             <a href="https://www.youtube.com/@UniversityGyaan_2.0" target="_blank" class="btn-yt">
-                <i class="fab fa-youtube" style="font-size: 1.4rem;"></i> IGNOU | CCSU ODL | DU SOL
+                <i class="fab fa-youtube"></i> 
+                <span>IGNOU | ODL<br>DU SOL</span>
             </a>
         </div>
 
@@ -341,7 +372,7 @@
                 <div class="tab-content">
                     <div class="tab-inner">
                         <p class="desc-text">GK questions, answers, and daily current affairs.</p>
-                        <a href="https://t.me/gkgurujiindia" target="_blank" class="btn-social tg"><i class="fab fa-telegram-plane"></i> GK Telegram Channel</a>
+                        <a href="https://t.me/gkgurujiindia" target="_blank" class="btn-social tg"><i class="fab fa-telegram-plane"></i> GK Telegram</a>
                     </div>
                 </div>
             </div>
@@ -350,9 +381,9 @@
 
         <div class="common-links">
             <h3>🌐 Our Common Platforms</h3>
-            <div class="tab-inner" style="padding:0;">
-                <a href="https://www.instagram.com/universitygyaan" target="_blank" class="btn-social ig" style="justify-content: center;"><i class="fab fa-instagram"></i> Follow on Instagram</a>
-                <a href="https://www.facebook.com/ccsussvcupdates" target="_blank" class="btn-social fb" style="justify-content: center;"><i class="fab fa-facebook-f"></i> Follow on Facebook</a>
+            <div class="two-col">
+                <a href="https://www.instagram.com/universitygyaan" target="_blank" class="btn-social ig"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.facebook.com/ccsussvcupdates" target="_blank" class="btn-social fb"><i class="fab fa-facebook-f"></i> Facebook</a>
             </div>
         </div>
 
