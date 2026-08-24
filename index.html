@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>University Gyaan - Premium Hub</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dark-blue: #020b1f;
-            --royal-blue: #001F3F;
+            --dark-bg: #050a15;
+            --card-bg: rgba(255, 255, 255, 0.03);
             --gold: #D4AF37;
-            --light-gold: #f3e5ab;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(212, 175, 55, 0.3);
-            --inner-bg: rgba(0, 0, 0, 0.35);
+            --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            --tg-color: #0088cc;
+            --wa-color: #25D366;
+            --yt-color: #ff0000;
         }
 
         * {
@@ -26,7 +26,10 @@
         }
 
         body {
-            background: radial-gradient(circle at 50% 0%, var(--royal-blue) 0%, var(--dark-blue) 70%, #000000 100%);
+            background-color: var(--dark-bg);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(0, 136, 204, 0.08), transparent 25%);
             color: #ffffff;
             display: flex;
             justify-content: center;
@@ -35,289 +38,258 @@
         }
 
         .container {
-            max-width: 500px;
+            max-width: 550px;
             width: 100%;
             padding: 30px 20px 60px;
             z-index: 1;
         }
 
-        /* Logo and Heading */
+        /* Branding Header */
         header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
+            text-align: center;
             margin-bottom: 25px;
-            animation: fadeIn 1.2s ease;
+            animation: fadeInDown 1s ease;
         }
 
         .logo {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
-            border: 2px solid var(--gold);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4), inset 0 0 10px rgba(212, 175, 55, 0.2);
+            border: 3px solid transparent;
+            background: var(--gold-gradient) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            padding: 3px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
             animation: float 4s ease-in-out infinite;
-            flex-shrink: 0;
+            margin-bottom: 10px;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            font-size: 2.5rem;
+            background: var(--gold-gradient);
             -webkit-background-clip: text;
             color: transparent;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            letter-spacing: 1px;
+            text-shadow: 0px 4px 15px rgba(212, 175, 55, 0.2);
             line-height: 1.1;
-            text-align: left;
+        }
+        
+        .brand-subtitle {
+            font-size: 0.85rem;
+            color: #a0a0a0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 5px;
         }
 
-        /* NEW: Private Students Blinking Button */
+        /* Private Student Button - High Priority */
         .btn-private-special {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             background: linear-gradient(135deg, #128C7E, #25D366);
             color: #ffffff;
             text-decoration: none;
-            padding: 8px 22px;
-            border-radius: 30px; /* Pill shape */
-            font-size: 0.85rem;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 0.95rem;
             font-weight: 600;
-            margin-bottom: 25px;
-            border: 1px solid var(--gold);
-            animation: specialBlink 1.2s infinite alternate;
-            position: relative;
+            margin: 0 auto 25px;
+            width: max-content;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            animation: pulseSpecial 2s infinite;
+            transition: transform 0.3s ease;
         }
 
-        @keyframes specialBlink {
-            0% { 
-                transform: scale(1); 
-                box-shadow: 0 0 5px rgba(37, 211, 102, 0.4), 0 0 5px rgba(212, 175, 55, 0.2); 
-            }
-            100% { 
-                transform: scale(1.05); 
-                box-shadow: 0 0 20px rgba(37, 211, 102, 0.8), 0 0 15px rgba(212, 175, 55, 0.6); 
-            }
+        .btn-private-special:hover {
+            transform: translateY(-3px) scale(1.05);
         }
 
-        /* Welcome Message */
-        .welcome-msg {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            padding: 15px 20px;
-            border-radius: 15px;
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--light-gold);
-            line-height: 1.5;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .welcome-msg::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
-            animation: shine 3s infinite;
-        }
-
-        /* Youtube Links */
-        .yt-container {
-            margin-bottom: 30px;
+        /* YouTube Section */
+        .yt-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 12px;
+            margin-bottom: 30px;
         }
 
         .btn-yt {
-            background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
+            background: rgba(255, 0, 0, 0.05);
+            border: 1px solid rgba(255, 0, 0, 0.3);
             color: white;
             text-decoration: none;
-            padding: 10px 12px;
-            border-radius: 12px;
-            font-weight: 500;
-            font-size: 0.75rem;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            border: 1px solid #ff4d4d;
-            box-shadow: 0 5px 15px rgba(204, 0, 0, 0.4);
-            transition: all 0.3s;
-            text-align: left;
-            line-height: 1.3;
-        }
-
-        .btn-yt i { 
-            font-size: 1.8rem; 
-            flex-shrink: 0;
-        }
-
-        .btn-yt:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(204, 0, 0, 0.6);
-        }
-
-        /* Tabs */
-        .tab-container {
+            padding: 15px 10px;
+            border-radius: 16px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-        }
-
-        .tab {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 8px;
             transition: all 0.3s ease;
         }
 
-        .tab.active {
-            background: rgba(212, 175, 55, 0.08);
-            border-color: var(--gold);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+        .btn-yt i { font-size: 2rem; color: var(--yt-color); }
+        .btn-yt span { font-size: 0.8rem; font-weight: 600; }
+        
+        .btn-yt:hover {
+            background: rgba(255, 0, 0, 0.15);
+            border-color: var(--yt-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
         }
 
-        .tab-header {
-            padding: 16px 20px;
-            font-weight: 500;
-            font-size: 1.05rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #ffffff;
-        }
-
-        .tab-header i {
-            color: var(--gold);
-            transition: transform 0.4s ease;
-        }
-
-        .tab.active .tab-header i {
-            transform: rotate(180deg);
-        }
-
-        .tab-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            background: var(--inner-bg);
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .tab.active .tab-content {
-            max-height: 500px;
-        }
-
-        .tab-inner {
-            padding: 20px;
+        /* Category Cards (Replaced Tabs for better clickability) */
+        .category-container {
             display: flex;
             flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .highlight-card {
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            background: rgba(212, 175, 55, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-card::before {
+            content: 'NEW';
+            position: absolute;
+            top: 10px;
+            right: -25px;
+            background: var(--gold);
+            color: #000;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 3px 30px;
+            transform: rotate(45deg);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i { color: var(--gold); }
+
+        .btn-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 12px;
         }
 
-        .desc-text {
-            font-size: 0.85rem;
-            color: #cccccc;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-
-        .btn-social {
+        /* Standard Social Buttons */
+        .btn {
             text-decoration: none;
-            color: white;
-            padding: 12px 15px;
-            border-radius: 8px;
-            font-size: 0.95rem;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            font-weight: 500;
-            transition: all 0.2s;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(255,255,255,0.05);
+            gap: 8px;
+            transition: all 0.3s;
+            color: #fff;
+            border: 1px solid transparent;
         }
 
-        .btn-social i { font-size: 1.2rem; }
-        
-        .btn-social.tg:hover { border-color: #0088cc; color: #0088cc; background: rgba(0, 136, 204, 0.1); }
-        .btn-social.wa:hover { border-color: #25D366; color: #25D366; background: rgba(37, 211, 102, 0.1); }
-        .btn-social.ig:hover { border-color: #E1306C; color: #E1306C; background: rgba(225, 48, 108, 0.1); }
-        .btn-social.fb:hover { border-color: #1877F2; color: #1877F2; background: rgba(24, 119, 242, 0.1); }
+        .btn i { font-size: 1.1rem; }
 
-        .common-links {
+        .btn-tg {
+            background: rgba(0, 136, 204, 0.1);
+            border-color: rgba(0, 136, 204, 0.3);
+            color: #e0f2fe;
+        }
+        .btn-tg i { color: var(--tg-color); }
+        .btn-tg:hover { background: var(--tg-color); color: #fff; transform: translateY(-3px); }
+        .btn-tg:hover i { color: #fff; }
+
+        .btn-wa {
+            background: rgba(37, 211, 102, 0.1);
+            border-color: rgba(37, 211, 102, 0.3);
+            color: #dcfce7;
+        }
+        .btn-wa i { color: var(--wa-color); }
+        .btn-wa:hover { background: var(--wa-color); color: #fff; transform: translateY(-3px); }
+        .btn-wa:hover i { color: #fff; }
+
+        /* Full width button for specific items */
+        .btn-full { grid-column: 1 / -1; }
+
+        /* Footer Socials */
+        .footer-socials {
             margin-top: 40px;
             text-align: center;
         }
-
-        .common-links h3 {
-            color: var(--gold);
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .two-col .btn-social {
-            font-size: 0.9rem;
-            padding: 12px 5px;
-        }
-
+        .footer-socials h3 { font-size: 1rem; color: #888; margin-bottom: 15px; font-weight: 500; }
+        
+        /* Animations */
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-            100% { transform: translateY(0px); }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
         }
 
-        @keyframes shine {
-            100% { left: 200%; }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+        @keyframes pulseSpecial {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
-
+        
+        .desc-text {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 12px;
+            grid-column: 1 / -1;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         
+        <!-- Header Branding -->
         <header>
             <img src="logo.jpg" alt="University Gyaan Logo" class="logo">
-            <h1>University<br>Gyaan</h1>
+            <h1>University Gyaan</h1>
+            <div class="brand-subtitle">Premium Educational Hub</div>
         </header>
 
-        <div style="text-align: center;">
-            <a href="https://whatsapp.com/channel/0029VbCVHI19MF93Iw2ZTX2Q" target="_blank" class="btn-private-special">
-                <i class="fab fa-whatsapp" style="font-size: 1.1rem;"></i> Private Students Special Group
-            </a>
-        </div>
+        <!-- Main CTA -->
+        <a href="https://whatsapp.com/channel/0029VbCVHI19MF93Iw2ZTX2Q" target="_blank" class="btn-private-special">
+            <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Private Students Special Group
+        </a>
 
-        <div class="welcome-msg">
-            ✨ CCSU | MSU | AKTU | MJPRU | IGNOU | SSV College से जुड़ी Daily Updates के लिए हमसे आज ही जुड़ें अपने पसंदीदा Social Media के माध्यम से ✨
-        </div>
-        
-        <div class="yt-container">
+        <!-- YouTube Subscription Cards -->
+        <div class="yt-grid">
             <a href="https://www.youtube.com/@University_Gyaan" target="_blank" class="btn-yt">
                 <i class="fab fa-youtube"></i> 
                 <span>CCSU | MSU<br>AKTU | MJPRU</span>
@@ -328,113 +300,98 @@
             </a>
         </div>
 
-        <div class="tab-container">
+        <!-- Direct Clickable Cards (Replaced Tabs) -->
+        <div class="category-container">
             
-            <div class="tab">
-                <div class="tab-header" onclick="toggleTab(this)">
-                    <span>🎓 CCS University, Meerut</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="tab-content">
-                    <div class="tab-inner">
-                        <a href="https://t.me/CCSNewsUpdates" target="_blank" class="btn-social tg"><i class="fab fa-telegram-plane"></i> Telegram Channel</a>
-                        <a href="https://www.whatsapp.com/channel/0029Va8mCyHDuMRolLgWPM2S" target="_blank" class="btn-social wa"><i class="fab fa-whatsapp"></i> WhatsApp Channel</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab">
-                <div class="tab-header" onclick="toggleTab(this)">
-                    <span>🎓 Maa Shakumbhari University</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="tab-content">
-                    <div class="tab-inner">
-                        <a href="https://t.me/MSU_NewsUpdates" target="_blank" class="btn-social tg"><i class="fab fa-telegram-plane"></i> Telegram Channel</a>
-                        <a href="https://www.whatsapp.com/channel/0029Vb7YOBX3gvWcNNANMJ1W" target="_blank" class="btn-social wa"><i class="fab fa-whatsapp"></i> WhatsApp Channel</a>
-                    </div>
+            <!-- NEW: College Updates Section -->
+            <div class="card highlight-card">
+                <div class="card-title"><i class="fas fa-bolt"></i> College Updates (All in One)</div>
+                <div class="btn-grid">
+                    <a href="https://t.me/CollegeUpdates_UG" target="_blank" class="btn btn-tg">
+                        <i class="fab fa-telegram-plane"></i> Telegram
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb8x1NQ8KMqe99CLKD0q" target="_blank" class="btn btn-wa">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
                 </div>
             </div>
 
-            <div class="tab">
-                <div class="tab-header" onclick="toggleTab(this)">
-                    <span>🏫 SSV College, Hapur</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="tab-content">
-                    <div class="tab-inner">
-                        <a href="https://t.me/SSVCollege_Hapur" target="_blank" class="btn-social tg"><i class="fab fa-telegram-plane"></i> Telegram Channel</a>
-                        <a href="https://www.whatsapp.com/channel/0029VbBSAbPJZg45uKTdPs2x" target="_blank" class="btn-social wa"><i class="fab fa-whatsapp"></i> WhatsApp Channel</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab">
-                <div class="tab-header" onclick="toggleTab(this)">
-                    <span>🌐 Distance Education (ODL)</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="tab-content">
-                    <div class="tab-inner">
-                        <p class="desc-text">News from CCSU ODL, IGNOU, DU SOL and other universities.</p>
-                        <a href="https://t.me/UnivesityGyaan_2" target="_blank" class="btn-social tg"><i class="fab fa-telegram-plane"></i> Telegram Channel</a>
-                    </div>
+            <!-- CCSU Section -->
+            <div class="card">
+                <div class="card-title"><i class="fas fa-graduation-cap"></i> CCS University, Meerut</div>
+                <div class="btn-grid">
+                    <a href="https://t.me/CCSNewsUpdates" target="_blank" class="btn btn-tg">
+                        <i class="fab fa-telegram-plane"></i> Telegram
+                    </a>
+                    <a href="https://www.whatsapp.com/channel/0029Va8mCyHDuMRolLgWPM2S" target="_blank" class="btn btn-wa">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
                 </div>
             </div>
 
-            <div class="tab">
-                <div class="tab-header" onclick="toggleTab(this)">
-                    <span>🎓 AKTU | MJPRU</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="tab-content">
-                    <div class="tab-inner">
-                        <p class="desc-text">Latest updates and news. Stay connected on YouTube & Instagram!</p>
-                    </div>
+            <!-- MSU Section -->
+            <div class="card">
+                <div class="card-title"><i class="fas fa-university"></i> Maa Shakumbhari University</div>
+                <div class="btn-grid">
+                    <a href="https://t.me/MSU_NewsUpdates" target="_blank" class="btn btn-tg">
+                        <i class="fab fa-telegram-plane"></i> Telegram
+                    </a>
+                    <a href="https://www.whatsapp.com/channel/0029Vb7YOBX3gvWcNNANMJ1W" target="_blank" class="btn btn-wa">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
                 </div>
             </div>
 
-            <div class="tab">
-                <div class="tab-header" onclick="toggleTab(this)">
-                    <span>📘 Daily GK Update</span>
-                    <i class="fas fa-chevron-down"></i>
+            <!-- SSV College Section -->
+            <div class="card">
+                <div class="card-title"><i class="fas fa-school"></i> SSV College, Hapur</div>
+                <div class="btn-grid">
+                    <a href="https://t.me/SSVCollege_Hapur" target="_blank" class="btn btn-tg">
+                        <i class="fab fa-telegram-plane"></i> Telegram
+                    </a>
+                    <a href="https://www.whatsapp.com/channel/0029VbBSAbPJZg45uKTdPs2x" target="_blank" class="btn btn-wa">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
                 </div>
-                <div class="tab-content">
-                    <div class="tab-inner">
-                        <p class="desc-text">GK questions, answers, and daily current affairs.</p>
-                        <a href="https://t.me/gkgurujiindia" target="_blank" class="btn-social tg"><i class="fab fa-telegram-plane"></i> GK Telegram</a>
-                    </div>
+            </div>
+
+            <!-- Distance Education Section -->
+            <div class="card">
+                <div class="card-title"><i class="fas fa-globe"></i> Distance Education (ODL)</div>
+                <div class="btn-grid">
+                    <p class="desc-text">CCSU ODL, IGNOU & DU SOL Updates</p>
+                    <a href="https://t.me/UnivesityGyaan_2" target="_blank" class="btn btn-tg btn-full">
+                        <i class="fab fa-telegram-plane"></i> Join Telegram Channel
+                    </a>
+                </div>
+            </div>
+
+            <!-- Daily GK Section -->
+            <div class="card">
+                <div class="card-title"><i class="fas fa-book-open"></i> Daily GK Update</div>
+                <div class="btn-grid">
+                    <a href="https://t.me/gkgurujiindia" target="_blank" class="btn btn-tg btn-full">
+                        <i class="fab fa-telegram-plane"></i> Join GK Telegram
+                    </a>
                 </div>
             </div>
 
         </div>
 
-        <div class="common-links">
-            <h3>🌐 Our Common Platforms</h3>
-            <div class="two-col">
-                <a href="https://www.instagram.com/universitygyaan" target="_blank" class="btn-social ig"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="https://www.facebook.com/ccsussvcupdates" target="_blank" class="btn-social fb"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <!-- Footer Social Links -->
+        <div class="footer-socials">
+            <h3>Connect on other platforms</h3>
+            <div class="btn-grid">
+                <a href="https://www.instagram.com/universitygyaan" target="_blank" class="btn" style="background: rgba(225,48,108,0.1); color: #E1306C; border: 1px solid rgba(225,48,108,0.3);">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a href="https://www.facebook.com/ccsussvcupdates" target="_blank" class="btn" style="background: rgba(24,119,242,0.1); color: #1877F2; border: 1px solid rgba(24,119,242,0.3);">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
             </div>
         </div>
 
     </div>
 
-    <script>
-        function toggleTab(header) {
-            const currentTab = header.parentElement;
-            const allTabs = document.querySelectorAll('.tab');
-
-            // Close all other tabs
-            allTabs.forEach(tab => {
-                if (tab !== currentTab) {
-                    tab.classList.remove('active');
-                }
-            });
-
-            // Toggle current tab
-            currentTab.classList.toggle('active');
-        }
-    </script>
 </body>
 </html>
-
