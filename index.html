@@ -9,7 +9,7 @@
     <style>
         :root {
             --dark-bg: #050a15;
-            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-bg: rgba(255, 255, 255, 0.04);
             --gold: #D4AF37;
             --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
             --tg-color: #0088cc;
@@ -28,92 +28,100 @@
         body {
             background-color: var(--dark-bg);
             background-image: 
-                radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.08), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(0, 136, 204, 0.08), transparent 25%);
+                radial-gradient(circle at top, rgba(212, 175, 55, 0.05), transparent 40%),
+                radial-gradient(circle at bottom, rgba(0, 136, 204, 0.05), transparent 40%);
             color: #ffffff;
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            background-attachment: fixed;
         }
 
         .container {
-            max-width: 550px;
+            max-width: 480px; /* Thinner for mobile perfect fit */
             width: 100%;
-            padding: 30px 20px 60px;
-            z-index: 1;
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Tightened gaps to fit in one page */
         }
 
-        /* Branding Header */
+        /* 1. Header (Logo + Title) */
         header {
             text-align: center;
-            margin-bottom: 25px;
-            animation: fadeInDown 1s ease;
         }
 
         .logo {
-            width: 90px;
-            height: 90px;
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
-            border: 3px solid transparent;
-            background: var(--gold-gradient) border-box;
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: destination-out;
-            mask-composite: exclude;
-            padding: 3px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-            animation: float 4s ease-in-out infinite;
-            margin-bottom: 10px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            object-fit: cover;
+            margin-bottom: 5px;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 2rem;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             color: transparent;
-            text-shadow: 0px 4px 15px rgba(212, 175, 55, 0.2);
             line-height: 1.1;
         }
         
         .brand-subtitle {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: #a0a0a0;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-top: 5px;
         }
 
-        /* Private Student Button - High Priority */
+        /* 2. Private Student Button */
         .btn-private-special {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             background: linear-gradient(135deg, #128C7E, #25D366);
             color: #ffffff;
             text-decoration: none;
-            padding: 12px 25px;
+            padding: 10px 20px;
             border-radius: 50px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin: 0 auto 25px;
-            width: max-content;
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
             animation: pulseSpecial 2s infinite;
-            transition: transform 0.3s ease;
         }
 
-        .btn-private-special:hover {
-            transform: translateY(-3px) scale(1.05);
-        }
-
-        /* YouTube Section */
-        .yt-grid {
+        /* 3. Insta + Facebook Row */
+        .social-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 30px;
+            gap: 10px;
+        }
+
+        .btn-social-sm {
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: #fff;
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .btn-social-sm.ig { color: #E1306C; }
+        .btn-social-sm.fb { color: #1877F2; }
+
+        /* 4. YouTube Row */
+        .yt-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
 
         .btn-yt {
@@ -121,154 +129,85 @@
             border: 1px solid rgba(255, 0, 0, 0.3);
             color: white;
             text-decoration: none;
-            padding: 15px 10px;
-            border-radius: 16px;
+            padding: 8px;
+            border-radius: 12px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
             gap: 8px;
-            transition: all 0.3s ease;
         }
 
-        .btn-yt i { font-size: 2rem; color: var(--yt-color); }
-        .btn-yt span { font-size: 0.8rem; font-weight: 600; }
-        
-        .btn-yt:hover {
-            background: rgba(255, 0, 0, 0.15);
-            border-color: var(--yt-color);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
-        }
+        .btn-yt i { font-size: 1.5rem; color: var(--yt-color); }
+        .btn-yt span { font-size: 0.7rem; font-weight: 600; text-align: left; line-height: 1.2; }
 
-        /* Category Cards (Replaced Tabs for better clickability) */
-        .category-container {
+        /* 5. Horizontal List for Universities */
+        .list-container {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-        }
-
-        .card {
+            gap: 8px;
             background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 20px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            border-radius: 15px;
+            padding: 10px;
         }
 
-        .card:hover {
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .highlight-card {
-            border: 1px solid rgba(212, 175, 55, 0.5);
-            background: rgba(212, 175, 55, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .highlight-card::before {
-            content: 'NEW';
-            position: absolute;
-            top: 10px;
-            right: -25px;
-            background: var(--gold);
-            color: #000;
-            font-size: 0.6rem;
-            font-weight: 700;
-            padding: 3px 30px;
-            transform: rotate(45deg);
-        }
-
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 15px;
+        .list-item {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
+            padding: 10px 12px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.02);
+            transition: all 0.2s;
         }
 
-        .card-title i { color: var(--gold); }
-
-        .btn-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
+        .list-item:hover {
+            border-color: rgba(212, 175, 55, 0.3);
         }
 
-        /* Standard Social Buttons */
-        .btn {
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 12px;
+        .list-title {
             font-size: 0.85rem;
             font-weight: 500;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
-            transition: all 0.3s;
+        }
+        .list-title i { color: var(--gold); font-size: 1rem; width: 15px; text-align: center; }
+
+        .action-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
             color: #fff;
-            border: 1px solid transparent;
+            font-size: 1rem;
+            transition: transform 0.2s;
         }
-
-        .btn i { font-size: 1.1rem; }
-
-        .btn-tg {
-            background: rgba(0, 136, 204, 0.1);
-            border-color: rgba(0, 136, 204, 0.3);
-            color: #e0f2fe;
-        }
-        .btn-tg i { color: var(--tg-color); }
-        .btn-tg:hover { background: var(--tg-color); color: #fff; transform: translateY(-3px); }
-        .btn-tg:hover i { color: #fff; }
-
-        .btn-wa {
-            background: rgba(37, 211, 102, 0.1);
-            border-color: rgba(37, 211, 102, 0.3);
-            color: #dcfce7;
-        }
-        .btn-wa i { color: var(--wa-color); }
-        .btn-wa:hover { background: var(--wa-color); color: #fff; transform: translateY(-3px); }
-        .btn-wa:hover i { color: #fff; }
-
-        /* Full width button for specific items */
-        .btn-full { grid-column: 1 / -1; }
-
-        /* Footer Socials */
-        .footer-socials {
-            margin-top: 40px;
-            text-align: center;
-        }
-        .footer-socials h3 { font-size: 1rem; color: #888; margin-bottom: 15px; font-weight: 500; }
         
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
+        .icon-btn:hover { transform: scale(1.1); }
+        .icon-btn.tg { background: rgba(0, 136, 204, 0.15); border: 1px solid var(--tg-color); color: var(--tg-color); }
+        .icon-btn.wa { background: rgba(37, 211, 102, 0.15); border: 1px solid var(--wa-color); color: var(--wa-color); }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Highlight specific item */
+        .highlight-item {
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            background: rgba(212, 175, 55, 0.05);
         }
+        .highlight-item .list-title { color: var(--gold); font-weight: 600; }
 
         @keyframes pulseSpecial {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-        
-        .desc-text {
-            font-size: 0.8rem;
-            color: #aaa;
-            margin-bottom: 12px;
-            grid-column: 1 / -1;
         }
     </style>
 </head>
@@ -276,20 +215,30 @@
 
     <div class="container">
         
-        <!-- Header Branding -->
+        <!-- 1. Header -->
         <header>
-            <img src="logo.jpg" alt="University Gyaan Logo" class="logo">
+            <img src="logo.jpg" alt="University Gyaan" class="logo">
             <h1>University Gyaan</h1>
             <div class="brand-subtitle">Premium Educational Hub</div>
         </header>
 
-        <!-- Main CTA -->
+        <!-- 2. Private Student Button -->
         <a href="https://whatsapp.com/channel/0029VbCVHI19MF93Iw2ZTX2Q" target="_blank" class="btn-private-special">
-            <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Private Students Special Group
+            <i class="fab fa-whatsapp"></i> Private Students Special Group
         </a>
 
-        <!-- YouTube Subscription Cards -->
-        <div class="yt-grid">
+        <!-- 3. Insta + Facebook Row -->
+        <div class="social-row">
+            <a href="https://www.instagram.com/universitygyaan" target="_blank" class="btn-social-sm ig">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://www.facebook.com/ccsussvcupdates" target="_blank" class="btn-social-sm fb">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+        </div>
+
+        <!-- 4. YouTube Channels -->
+        <div class="yt-row">
             <a href="https://www.youtube.com/@University_Gyaan" target="_blank" class="btn-yt">
                 <i class="fab fa-youtube"></i> 
                 <span>CCSU | MSU<br>AKTU | MJPRU</span>
@@ -300,97 +249,54 @@
             </a>
         </div>
 
-        <!-- Direct Clickable Cards (Replaced Tabs) -->
-        <div class="category-container">
+        <!-- 5. University & College Updates (Horizontal List View) -->
+        <div class="list-container">
             
-            <!-- NEW: College Updates Section -->
-            <div class="card highlight-card">
-                <div class="card-title"><i class="fas fa-bolt"></i> College Updates (All in One)</div>
-                <div class="btn-grid">
-                    <a href="https://t.me/CollegeUpdates_UG" target="_blank" class="btn btn-tg">
-                        <i class="fab fa-telegram-plane"></i> Telegram
-                    </a>
-                    <a href="https://whatsapp.com/channel/0029Vb8x1NQ8KMqe99CLKD0q" target="_blank" class="btn btn-wa">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
+            <!-- CCS University -->
+            <div class="list-item">
+                <div class="list-title"><i class="fas fa-graduation-cap"></i> CCS University</div>
+                <div class="action-btns">
+                    <a href="https://t.me/CCSNewsUpdates" target="_blank" class="icon-btn tg"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://www.whatsapp.com/channel/0029Va8mCyHDuMRolLgWPM2S" target="_blank" class="icon-btn wa"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
 
-            <!-- CCSU Section -->
-            <div class="card">
-                <div class="card-title"><i class="fas fa-graduation-cap"></i> CCS University, Meerut</div>
-                <div class="btn-grid">
-                    <a href="https://t.me/CCSNewsUpdates" target="_blank" class="btn btn-tg">
-                        <i class="fab fa-telegram-plane"></i> Telegram
-                    </a>
-                    <a href="https://www.whatsapp.com/channel/0029Va8mCyHDuMRolLgWPM2S" target="_blank" class="btn btn-wa">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
+            <!-- Maa Shakumbhari (MSU) -->
+            <div class="list-item">
+                <div class="list-title"><i class="fas fa-university"></i> MSU Saharanpur</div>
+                <div class="action-btns">
+                    <a href="https://t.me/MSU_NewsUpdates" target="_blank" class="icon-btn tg"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://www.whatsapp.com/channel/0029Vb7YOBX3gvWcNNANMJ1W" target="_blank" class="icon-btn wa"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
 
-            <!-- MSU Section -->
-            <div class="card">
-                <div class="card-title"><i class="fas fa-university"></i> Maa Shakumbhari University</div>
-                <div class="btn-grid">
-                    <a href="https://t.me/MSU_NewsUpdates" target="_blank" class="btn btn-tg">
-                        <i class="fab fa-telegram-plane"></i> Telegram
-                    </a>
-                    <a href="https://www.whatsapp.com/channel/0029Vb7YOBX3gvWcNNANMJ1W" target="_blank" class="btn btn-wa">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
+            <!-- SSV College -->
+            <div class="list-item">
+                <div class="list-title"><i class="fas fa-school"></i> SSV College, Hapur</div>
+                <div class="action-btns">
+                    <a href="https://t.me/SSVCollege_Hapur" target="_blank" class="icon-btn tg"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://www.whatsapp.com/channel/0029VbBSAbPJZg45uKTdPs2x" target="_blank" class="icon-btn wa"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
 
-            <!-- SSV College Section -->
-            <div class="card">
-                <div class="card-title"><i class="fas fa-school"></i> SSV College, Hapur</div>
-                <div class="btn-grid">
-                    <a href="https://t.me/SSVCollege_Hapur" target="_blank" class="btn btn-tg">
-                        <i class="fab fa-telegram-plane"></i> Telegram
-                    </a>
-                    <a href="https://www.whatsapp.com/channel/0029VbBSAbPJZg45uKTdPs2x" target="_blank" class="btn btn-wa">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
+            <!-- College Updates -->
+            <div class="list-item highlight-item">
+                <div class="list-title"><i class="fas fa-bolt"></i> College Updates</div>
+                <div class="action-btns">
+                    <a href="https://t.me/CollegeUpdates_UG" target="_blank" class="icon-btn tg"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://whatsapp.com/channel/0029Vb8x1NQ8KMqe99CLKD0q" target="_blank" class="icon-btn wa"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
 
-            <!-- Distance Education Section -->
-            <div class="card">
-                <div class="card-title"><i class="fas fa-globe"></i> Distance Education (ODL)</div>
-                <div class="btn-grid">
-                    <p class="desc-text">CCSU ODL, IGNOU & DU SOL Updates</p>
-                    <a href="https://t.me/UnivesityGyaan_2" target="_blank" class="btn btn-tg btn-full">
-                        <i class="fab fa-telegram-plane"></i> Join Telegram Channel
-                    </a>
-                </div>
-            </div>
-
-            <!-- Daily GK Section -->
-            <div class="card">
-                <div class="card-title"><i class="fas fa-book-open"></i> Daily GK Update</div>
-                <div class="btn-grid">
-                    <a href="https://t.me/gkgurujiindia" target="_blank" class="btn btn-tg btn-full">
-                        <i class="fab fa-telegram-plane"></i> Join GK Telegram
-                    </a>
+            <!-- Optional: Distance/ODL (Only 1 Link) -->
+            <div class="list-item">
+                <div class="list-title"><i class="fas fa-globe"></i> Distance Edu. (ODL)</div>
+                <div class="action-btns">
+                    <a href="https://t.me/UnivesityGyaan_2" target="_blank" class="icon-btn tg"><i class="fab fa-telegram-plane"></i></a>
                 </div>
             </div>
 
         </div>
-
-        <!-- Footer Social Links -->
-        <div class="footer-socials">
-            <h3>Connect on other platforms</h3>
-            <div class="btn-grid">
-                <a href="https://www.instagram.com/universitygyaan" target="_blank" class="btn" style="background: rgba(225,48,108,0.1); color: #E1306C; border: 1px solid rgba(225,48,108,0.3);">
-                    <i class="fab fa-instagram"></i> Instagram
-                </a>
-                <a href="https://www.facebook.com/ccsussvcupdates" target="_blank" class="btn" style="background: rgba(24,119,242,0.1); color: #1877F2; border: 1px solid rgba(24,119,242,0.3);">
-                    <i class="fab fa-facebook-f"></i> Facebook
-                </a>
-            </div>
-        </div>
-
     </div>
 
 </body>
